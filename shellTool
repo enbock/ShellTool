@@ -1,0 +1,18 @@
+#!/bin/bash
+
+export PRG=$(dirname $(readlink -f $0))
+export UI=dialog
+. $PRG/config/main.sh
+
+if test -z "$1"
+then
+	run menu
+else
+	if test "$1" == run
+	then
+		$@
+	else
+		run shell bash $@
+	fi
+fi 
+

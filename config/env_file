@@ -1,0 +1,23 @@
+DBADMIN_USER=root
+DBADMIN_PASS=root
+DB_USER=dev
+DB_PASS=ved
+THISDIR=$HOME
+LOCALDIR=$THISDIR/.local
+BINDIR=$LOCALDIR/bin
+WORKDIR=$HOME/work
+#REBOOTDIR=$WORKDIR/reboot
+REBOOTDIR=$WORKDIR
+DBPHPUNIT_USER=phpunit
+DBPHPUNIT_PASS=tinuphp
+VR_MAP_VIA_NFS=0
+VR_DIR=$HOME/work/vagrant
+VR_IF=eth2
+
+if test -e $HOME/.shellTool
+then
+	. $HOME/.shellTool
+fi
+
+VR_REBOOT_NODE=dev
+VR_OVERRIDE=1

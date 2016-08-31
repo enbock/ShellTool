@@ -1,0 +1,27 @@
+#!/bin/bash
+
+export PRG=$(dirname $(readlink -f $0))
+export UI=dialog
+. $PRG/config/main.sh
+
+module ticket
+module git
+
+currentBranch branch
+currentTicket ticket
+
+if test "$branch" == "develop"
+then
+	branch=""
+else
+	branch=" [$(echo "$branch" | sed "s:.*/::g")]"
+fi
+
+echo "$ticket " > $TMP/gitEditor
+cat "$1" >> $TMP/gitEditor
+
+cp $TMP/gitEditor $TMP/gitEditor.compare
+run $UI fileEdit $TMP/gitEditor
+# change only after edit has modification...other do no changes
+diff $TMP/gitEditor $TMP/gitEditor.compare > /dev/null || mv $TMP/gitEditor $1
+
